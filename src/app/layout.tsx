@@ -33,7 +33,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           notoSansKr.className,
           'flex flex-col',
         ].join(' ')}>
-        <header className='h-16 flex flex-col bg-white/50 backdrop-blur-3xl fixed w-full top-0'>
+        <header className='h-16 flex flex-col bg-white/50 backdrop-blur-xl fixed w-full top-0'>
           <div className='flex-1 px-4 flex items-center justify-between'>
             <Link href='/' className='text-xl font-space'>
               GT Tech blog
@@ -49,7 +49,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           <hr className='border-gray-200' />
           <div className='p-6 flex items-center justify-center'>
             <p className='text-gray-300'>
-              @ {year} Gyeongtae Gim All Copy right
+              {year} Gyeongtae Gim All rights reserved.
             </p>
           </div>
         </footer>
