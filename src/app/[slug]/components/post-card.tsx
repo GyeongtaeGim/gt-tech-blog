@@ -24,7 +24,7 @@ export default function PostCard({
   return (
     <Link
       href={`/${slug}`}
-      className='flex flex-col gap-4 border rounded-lg shadow-md border-gray-200'>
+      className='flex flex-col gap-4 border rounded-lg overflow-clip shadow-md border-gray-200'>
       <img
         src={image || `/og?title=${encodeURIComponent(title)}`}
         alt={title}
