@@ -33,7 +33,7 @@ export default function RootLayout({ children }: PropsWithChildren) {
           notoSansKr.className,
           'flex flex-col',
         ].join(' ')}>
-        <header className='h-16 flex flex-col bg-white/50 backdrop-blur-xl fixed w-full top-0'>
+        <header className='h-16 flex flex-col bg-white/50 backdrop-blur-xl fixed w-full top-0 z-50'>
           <div className='flex-1 px-4 flex items-center justify-between'>
             <Link href='/' className='text-xl font-space'>
               GT Tech blog
