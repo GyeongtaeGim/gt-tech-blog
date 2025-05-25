@@ -28,7 +28,7 @@ export default function PostCard({
       <img
         src={image || `/og?title=${encodeURIComponent(title)}`}
         alt={title}
-        className='w-full h-48 object-cover rounded-lg'
+        className='w-full h-48 object-cover border-b border-gray-200'
       />
       <div className='p-4 flex flex-col gap-4'>
         <div>

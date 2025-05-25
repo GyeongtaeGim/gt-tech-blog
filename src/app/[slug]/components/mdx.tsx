@@ -3,6 +3,7 @@ import React, { PropsWithChildren } from 'react';
 import { MDXRemote, MDXRemoteProps } from 'next-mdx-remote/rsc';
 
 import { StackBlitzEmbed } from './stack-blitz-embed';
+import Video from './video';
 
 const Heading1 = ({ children }: PropsWithChildren) => {
   return <h1 className='text-4xl text-gray-900'>{children}</h1>;
@@ -35,6 +36,7 @@ const components = {
   h5: Heading5,
   h6: Heading6,
   StackBlitzEmbed,
+  Video,
 };
 
 export function MDX(props: MDXRemoteProps) {
