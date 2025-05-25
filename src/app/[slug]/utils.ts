@@ -45,7 +45,8 @@ function getMDXData(dir: string) {
 }
 
 export function getPosts() {
-    return getMDXData(path.join(process.cwd(), 'src', 'app', '[slug]', 'posts')).sort(
+    const url = process.env.NODE_ENV === 'production' ? path.join(process.cwd(), '.next', 'server', 'posts') : path.join(process.cwd(), 'src', 'posts')
+    return getMDXData(url).sort(
         (a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
     )
 }

@@ -11,7 +11,6 @@
   "dependencies": {
     "@mdx-js/loader": "^3.1.0",
     "@mdx-js/react": "^3.1.0",
-    "@next/mdx": "^15.3.2",
     "@stackblitz/sdk": "^1.11.0",
     "@types/mdx": "^2.0.13",
     "motion": "^12.12.2",
@@ -29,6 +28,7 @@
     "@types/node": "^20",
     "@types/react": "^19",
     "@types/react-dom": "^19",
+    "copy-webpack-plugin": "^13.0.0",
     "eslint": "^9",
     "eslint-config-next": "15.3.2",
     "prettier": "^3.5.3",
