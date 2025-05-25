@@ -3,7 +3,7 @@ import { getPosts } from "./[slug]/utils"
 export const baseUrl = process.env.NEXT_PUBLIC_BASE_URL || 'http://localhost:3000'
 
 export default async function sitemap() {
-    const posts = getPosts().map((post) => ({
+    const posts = (await getPosts()).map((post) => ({
         url: `${baseUrl}/${post.slug}`,
         lastModified: post.metadata.publishedAt,
     }))
