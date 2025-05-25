@@ -1,9 +1,11 @@
 import Link from 'next/link';
 
+import { Category } from '../utils';
+
 interface PostCardProps {
   slug: string;
   title: string;
-  category: 'portfolio';
+  category: Category;
   publishedAt: string;
   summary: string;
   image?: string;
@@ -30,9 +32,8 @@ export default function PostCard({
       />
       <div className='p-4 flex flex-col gap-4'>
         <div>
-          {category === 'portfolio' && (
-            <h2 className='text-sm text-gray-500'>포트폴리오</h2>
-          )}
+          <h2 className='text-sm text-gray-500 uppercase'>{category}</h2>
+
           <h1 className='text-xl font-bold'>{title}</h1>
         </div>
         <p className='text-gray-500'>{summary}</p>
@@ -48,9 +49,9 @@ export default function PostCard({
         <div
           className='flex gap-2 px-4 mb-4 overflow-x-scroll'
           style={{
-            scrollbarWidth: 'none', // Firefox
-            msOverflowStyle: 'none', // Internet Explorer and Edge
-            WebkitOverflowScrolling: 'touch', // iOS momentum scrolling
+            scrollbarWidth: 'none',
+            msOverflowStyle: 'none',
+            WebkitOverflowScrolling: 'touch',
           }}>
           {tags.map((tag) => (
             <span

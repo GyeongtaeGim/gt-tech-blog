@@ -2,11 +2,13 @@ import fs from 'fs'
 import path from 'path'
 import yaml from 'yaml'
 
+export type Category = 'portfolio' | 'project'
+
 type Metadata = {
     title: string
     publishedAt: string
     summary: string
-    category: 'portfolio'
+    category: Category
     image?: string
     tags?: string[]
 }
@@ -45,7 +47,6 @@ function getMDXData(dir: string) {
 export function getPosts() {
     return getMDXData(path.join(process.cwd(), 'src', 'app', '[slug]', 'posts'))
 }
-
 
 export function formatDate(date: string, includeRelative = false) {
     const currentDate = new Date()
