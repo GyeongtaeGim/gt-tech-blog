@@ -1,8 +1,8 @@
 import PostCard from '../[slug]/components/post-card';
 import { getPosts } from '../[slug]/utils';
 
-export default function Home() {
-  const posts = getPosts();
+export default async function Home() {
+  const posts = await getPosts();
   return (
     <div className='flex w-full justify-center px-4 py-14'>
       <div className='max-w-6xl w-full flex flex-col gap-4'>

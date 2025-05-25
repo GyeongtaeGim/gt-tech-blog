@@ -1,5 +1,4 @@
-import fs from 'fs'
-import path from 'path'
+import { prisma } from '@/prsima'
 import yaml from 'yaml'
 
 export type Category = 'portfolio' | 'project'
@@ -21,32 +20,30 @@ function parseFrontmatter(fileContent: string) {
     return { metadata: yaml.parse(frontMatterBlock) as Metadata, content }
 }
 
-function getMDXFiles(dir: string) {
-    return fs.readdirSync(dir).filter((file) => path.extname(file) === '.mdx')
-}
-
-function readMDXFile(filePath: string) {
-    const rawContent = fs.readFileSync(filePath, 'utf-8')
-    return parseFrontmatter(rawContent)
-}
-
-function getMDXData(dir: string) {
-    const mdxFiles = getMDXFiles(dir)
-    return mdxFiles.map((file) => {
-        const { metadata, content } = readMDXFile(path.join(dir, file))
-        const slug = path.basename(file, path.extname(file))
-
-        return {
-            metadata,
-            slug,
-            content,
-        }
+export async function getPost(slug: string) {
+    const post = await prisma.post.findUnique({
+        where: { slug },
     })
+    if (!post) {
+        return null
+    }
+    const { metadata, content } = parseFrontmatter(post.content)
+    return {
+        slug: post.slug,
+        metadata: {
+            ...metadata,
+            publishedAt: new Date(metadata.publishedAt).toISOString(),
+        },
+        content,
+    }
 }
 
-export function getPosts() {
-    const url = process.env.NODE_ENV === 'production' ? path.join(process.cwd(), '.next', 'server', 'posts') : path.join(process.cwd(), 'src', 'posts')
-    return getMDXData(url).sort(
+export async function getPosts() {
+    const posts = (await prisma.post.findMany()).map(post => ({
+        slug: post.slug,
+        ...parseFrontmatter(post.content)
+    }));
+    return posts.sort(
         (a, b) => new Date(b.metadata.publishedAt).getTime() - new Date(a.metadata.publishedAt).getTime()
     )
 }

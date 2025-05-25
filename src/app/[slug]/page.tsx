@@ -3,7 +3,7 @@ import { notFound } from 'next/navigation';
 
 import { baseUrl } from '../sitemap';
 import { MDX } from './components/mdx';
-import { getPosts } from './utils';
+import { getPost } from './utils';
 
 type PageProps = {
   params: Promise<{ slug: string }>;
@@ -11,7 +11,7 @@ type PageProps = {
 
 export default async function Page({ params }: PageProps) {
   const postSlug = (await params).slug;
-  const post = getPosts().find((post) => post.slug === postSlug);
+  const post = await getPost(postSlug);
   if (!post) {
     return notFound();
   }
@@ -39,7 +39,7 @@ export async function generateMetadata({
   params,
 }: PageProps): Promise<Metadata | null> {
   const postSlug = (await params).slug;
-  const post = getPosts().find((post) => post.slug === postSlug);
+  const post = await getPost(postSlug);
   if (!post) {
     return null;
   }
