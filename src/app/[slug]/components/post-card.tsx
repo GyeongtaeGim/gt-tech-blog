@@ -47,7 +47,7 @@ export default function PostCard({
       </div>
       {tags && (
         <div
-          className='flex gap-2 px-4 mb-4 overflow-x-scroll'
+          className='flex gap-2 px-4 mb-4 overflow-x-scroll flex-1 items-end'
           style={{
             scrollbarWidth: 'none',
             msOverflowStyle: 'none',
@@ -56,7 +56,7 @@ export default function PostCard({
           {tags.map((tag) => (
             <span
               key={tag}
-              className='bg-gray-200 text-gray-700 px-2 py-1 rounded-full'>
+              className='bg-gray-200 text-gray-700 px-2 py-1 rounded-full text-nowrap'>
               {tag}
             </span>
           ))}
